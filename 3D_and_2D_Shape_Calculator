@@ -1,0 +1,521 @@
+// 3D_Surface_Calculator.cpp : This file contains the 'main' function. Program execution begins and ends there.
+//
+
+#include <iostream>
+#include <cmath>
+#include <math.h>
+#include <string>
+#include <Windows.h>
+#include <thread>
+#include <fstream>
+#include <sstream>
+
+
+
+
+#define _WIN32_WINNT 0x0500
+
+
+
+
+using namespace std;
+
+class Cube
+{
+public:
+	double length = NULL;
+	double width = NULL;
+	double height_3D = NULL;
+
+	void set_length(double lengthNum)
+	{
+		length = lengthNum;
+	}
+	double get_length() const { return (length); }
+	
+	void set_width(double widthNum) { width = widthNum; }
+	double get_num() const { return width; }
+
+	void set_height_3D(double height_3DNum) { height_3D = height_3DNum; }
+	double get_num() { return height_3D; }
+
+
+	void set_volume(double volumeNum) 
+	{
+		volume = volumeNum; 
+	}
+
+	double get_volume() const { return (length * width * height_3D); }
+
+private:
+	double volume = NULL;
+
+};
+
+
+class Sphere
+{
+public:
+	Sphere();
+	~Sphere();
+
+private:
+
+};
+
+Sphere::Sphere()
+{
+}
+
+Sphere::~Sphere()
+{
+}
+
+class Cone
+{
+public:
+	Cone();
+	~Cone();
+
+private:
+
+};
+
+Cone::Cone()
+{
+}
+
+Cone::~Cone()
+{
+}
+
+class Cuboid
+{
+public:
+	Cuboid();
+	~Cuboid();
+
+private:
+
+};
+
+Cuboid::Cuboid()
+{
+}
+
+Cuboid::~Cuboid()
+{
+}
+
+class Cylinder
+{
+public:
+	Cylinder();
+	~Cylinder();
+
+private:
+
+};
+
+Cylinder::Cylinder()
+{
+}
+
+Cylinder::~Cylinder()
+{
+}
+
+class Pyramid
+{
+public:
+	Pyramid();
+	~Pyramid();
+
+private:
+
+};
+
+Pyramid::Pyramid()
+{
+}
+
+Pyramid::~Pyramid()
+{
+}
+
+class Triangular_Prism
+{
+public:
+	Triangular_Prism();
+	~Triangular_Prism();
+
+private:
+
+};
+
+Triangular_Prism::Triangular_Prism()
+{
+}
+
+Triangular_Prism::~Triangular_Prism()
+{
+}
+
+// 2D shape surface area calculator
+
+//object square
+class shape1
+{
+	double side; // private by default
+	double side2;
+
+public:
+	void set_side(double sideNum) { side = sideNum; }
+	double get_num() const { return side; }
+	void set_side2(double sideNum2) { side2 = sideNum2; }
+	double get_area() const { return side * side2; }
+
+
+};
+//////////////////////////////////////////////////
+//object circle
+class shape2
+{
+
+	double r = NULL;
+	double pi = 3.14159265;
+	double diameter = NULL;
+
+
+
+public:
+	void set_radius(double radius) { r = radius; }
+	double get_radius() const { return r; }
+	double get_circle_area() { return (r * r) * pi; }
+	void set_diameter(double diameter) { diameter = diameter; }
+	double get_diameter() const { return pow(r, 2); }
+
+};
+
+////////////////////////////////////////////////////
+// object triangle
+
+class shape3
+{
+	double b = NULL;
+	double h = NULL;
+	double oneHALF = .5;
+
+
+public:
+	void set_base(double base) { b = base; }
+	double get_base() const { return b; }
+
+	void set_height(double height) { h = height; }
+	double get_height() const { return h; }
+
+	double get_area() { return ((b * h) * (oneHALF)); }
+
+
+
+
+};
+////////////////////////////////////////////////
+// Object Trapezoid
+class shape4
+{
+	double bA = NULL;
+	double bB = NULL;
+	double h = NULL;
+
+
+public:
+	void set_baseA(double baseA) { bA = baseA; }
+	double get_baseA() const { return bA; }
+
+	void set_baseB(double baseB) { bB = baseB; }
+	double get_baseB() const { return bB; }
+
+	void set_height(double height) { h = height; }
+	double get_height() const { return h; }
+
+	double get_area() const { return ((bA + bB) * (h) / 2); }
+
+
+
+
+
+
+};
+////////////////////////////////////////////////
+// object Ellipse
+class shape5
+{
+	double aA = NULL;
+	double aB = NULL;
+	double pi2 = 3.14159265;
+public:
+	void set_axisA(double axisA) { aA = axisA; }
+	double get_axisA() const { return aA; }
+
+	void set_axisB(double axisB) { aB = axisB; }
+	double get_axisB() const { return aB; }
+
+	double get_area() const { return ((pi2 * aA * aB)); }
+
+private:
+
+};
+////////////////////////////////////////////////
+// Object Sector
+class shape6
+{
+	double r = NULL;
+	double a = NULL;
+	double pi3 = 3.14159265;
+
+public:
+	void set_radius(double radius) { r = radius; }
+	double get_radius() const { return r; }
+
+	void set_angleinRadians(double angleinRadians) { a = angleinRadians; }
+	double get_angleinRadians() const { return a; }
+
+	double get_area() { return a / 360 * pi3 * r * r; }
+
+
+
+private:
+
+};
+
+
+
+
+
+
+int main()
+{
+
+	//Resizing the Console
+	HWND console = GetConsoleWindow();
+	RECT r;
+	GetWindowRect(console, &r); //stores the console's current dimensions
+
+	//MoveWindow(window_handle, x, y, width, height, redraw_window);
+	MoveWindow(console, r.left, r.top, 1100, 600, TRUE);
+	//Start of Main Output
+
+
+
+
+	Cube Cube1;
+	double length = 0;
+	double width = 0;
+	double height_3D = 0;
+
+	////////////////////////////////////////////////////////////
+	// For 2D shapes
+	//for circle
+	shape2 circle;
+	double radius = 0;
+	double pi = 3.14159265;
+
+	//for square
+	shape1 square;
+	double side1 = 0;
+	double side2 = 0;
+
+	//for triangle
+	shape3 triangle;
+	double base = NULL;
+	double height = NULL;
+	double oneHALF = .5;
+
+	//for trapezoid
+	shape4 trapezoid;
+	double baseA = NULL;
+	double baseB = NULL;
+	double trapHeight = NULL;
+
+	//for Ellipse
+	shape5 Ellipse;
+	double axisA;
+	double axisB;
+	double pi2 = 3.14159265;
+
+	//for Sector
+	shape6 Sector;
+	double radius2;
+	double angle;
+	/////////////////////////////////////////////////////////////////////
+
+
+
+
+	string option1;
+	
+	cout << "Hello and Welcome to Our 3D-Shape Volume and Surface Area Calculator. \n";
+	cout << "Please Select an Option Below\n1.Cube \n2.Sphere \n3.Cone \n4.Cubiod \n5.Cyilnder \n6.Pyramid \n7.Triangular Prism \n8.QUIT\n9.2D Shape Calculator \n";
+	cout << "Please Select an Option by Entering in a Number Relating to The Shape or by Typing In The Name of The Shape and by Pressing [ENTER]\n";
+	cin >> option1;
+	// 3D Shape Calculator
+
+	ofstream myfile;
+	myfile.open("Your_Answer.txt");
+
+	if (option1 == "1" || option1 == "1.")
+	{
+		cout << "Enter the length of the Cube: " << endl;
+		cin >> length;
+		cout << "Enter the Width of the Cube: " << endl;
+		cin >> width;
+		cout << "Enter the Height of the Cube: " << endl;
+		cin >> height_3D;
+		
+		Cube1.set_length(length);
+		Cube1.set_width(width);
+		Cube1.set_height_3D(height_3D);
+		
+		int barl = 70;
+
+		cout << "\nWait Patiently!\n" << endl;
+		cout << "[";
+		for (int i = 0; i < barl; i++) {
+			Sleep(100);
+			cout << ":";
+		}
+		cout << "]";
+
+		cout << "\n\nThe volume of your cube is: " << Cube1.get_volume() << "\n\n\n\n\n\n";
+		myfile << "Answer is: " << Cube1.get_volume();
+	}
+
+
+
+
+
+
+
+	if (option1 == "8" || option1 == "8." || option1 == "QUIT" || option1 == "quit" || option1 == "Quit")
+	{
+		system("CLS");
+		cout << "Thank You For Using Our Calculator... \n";
+			system("PAUSE");
+				system("EXIT");
+	}
+
+
+
+	// 2D Surface Area Calculator
+	string choice;
+	if (option1 == "9")
+	{
+
+
+		do
+		{
+			system("CLS");
+			cout << "Welcome to the 2D Shape Surface Area Calculator.\n Please Select A 2D Shape Below\n";
+			cout << "1. Square\n2. Circle\n3. Triangle\n4. Trapezoid\n5. Ellipse\n6.Sector \n7.EXIT The Program\nSelect the Shape by typing in the number corresponding with"
+				" the shape, and then press the [ENTER] button on your KEYBOARD. " << endl;
+
+			cin >> choice;
+			if (choice == "1" || choice == "1.")
+			{
+				cout << "Enter the length of side 1: " << endl;
+				cin >> side1;
+				cout << "Enter the length of side 2: " << endl;
+				cin >> side2;
+
+				square.set_side(side1);
+				square.set_side2(side2);
+
+				cout << "Area of square is: " << square.get_area() << endl;
+				myfile << "Answer is: " << square.get_area();
+			}
+			if (choice == "2" || choice == "2.")
+			{
+				printf("What is the radius of the circle: \n");
+				cin >> radius;
+
+				circle.set_radius(radius);
+				cout << "The radius of the circle is: " << circle.get_radius() << endl;
+				cout << "The area of the circle is: " << circle.get_circle_area() << endl;
+				cout << "The Diameter of the circle is : " << circle.get_diameter() << endl;
+				myfile << "Answer is: " << circle.get_circle_area() << "\nAnswer is: " << circle.get_diameter();
+				myfile.close();
+			}
+			if (choice == "3" || choice == "3.")
+			{
+				printf("What is the base of the triangle? \n");
+				cin >> base;
+				printf("What is the height of the triangle? \n");
+				cin >> height;
+				triangle.set_base(base);
+				triangle.set_height(height);
+				cout << "The Area of the Triangle is " << triangle.get_area() << endl;
+
+			}
+			if (choice == "4" || choice == "4.")
+			{
+				printf("What is the length of Base A \n");
+				cin >> baseA;
+				printf("What is the length of Base B \n");
+				cin >> baseB;
+				printf("What is the height of the Trapezoid \n");
+				cin >> trapHeight;
+
+				trapezoid.set_baseA(baseA);
+				trapezoid.set_baseB(baseB);
+				trapezoid.set_height(trapHeight);
+				cout << "The area of the Trapezoid is " << trapezoid.get_area() << endl;
+			}
+			if (choice == "5" || choice == "5.")
+			{
+				cout << "What is the length of Axis A? \n";
+				cin >> axisA;
+				cout << "What is the lenght of Axis B? \n";
+				cin >> axisB;
+
+				Ellipse.set_axisA(axisA);
+				Ellipse.set_axisB(axisB);
+				cout << "The area of your Ellipse is " << Ellipse.get_area() << endl;
+			}
+			if (choice == "6" || choice == "6.")
+			{
+				cout << "Please enter in the Radius of the Sector. " << endl;
+				cin >> radius2;
+				cout << "Please enter in the Angle in Degrees. EX: 25, 120. " << endl;
+				cin >> angle;
+
+				Sector.set_angleinRadians(angle);
+				Sector.set_radius(radius2);
+				cout << "The Surface Area of your Sector is " << +Sector.get_area() << endl;
+
+			}
+
+			if (choice == "7" || choice == "7." || choice == "QUIT" || choice == "quit" || choice == "Quit")
+			{
+				system("CLS");
+				cout << "Thank You For Using Our Calculator... \n";
+				system("PAUSE");
+				system("EXIT");
+				break;
+			}
+
+			system("PAUSE");
+			system("CLS");
+
+		} while (true);
+
+		
+
+	}
+
+
+	return(0);
+
+
+}
+
